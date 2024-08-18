@@ -1,7 +1,7 @@
 [run]
 source =
     ajedrez
-    test
+    tests
 omit =
     venv/*
     */test*
