@@ -1,5 +1,4 @@
 __pycache__/
 .coverage
 venv/
-entorno
-/entorno
+entorno/
