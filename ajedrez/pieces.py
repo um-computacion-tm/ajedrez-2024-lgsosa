@@ -114,5 +114,60 @@ class Queen(Piece):
 
 ### PEONES ###
 class Pawn(Piece):
-    pass
+    def __init__(self, color):
+        super().__init__(color)
+    
+    def basic_pawn_moves(self, row, col):
+        moves = []
+
+        possibles_direction = []
+
+        if self.color == "WHITE": #modificar y dejarlo con coordenadas (vectores)
+
+            return [(0, 1), (0, 2), (-1, 1), (1, 1)]
+        
+        elif self.color == 'BLACK':
+
+            return [(0, -1), (0, -2), (-1, -1), (1, -1)]
+
+
+    def eat_pieces_with_peon(self, row, col):
+            moves = []
+
+            if self.color == "WHITE":
+
+                r, c = row - 1, col - 1
+                while r >= 0 and c >= 0:
+                    moves.append((r, c))
+                    r -= 1
+                    c -= 1
+
+                r, c = row - 1, col + 1
+                while r >= 0 and c <= 7:
+                    moves.append((r, c))
+                    r -= 1
+                    c += 1
+            
+            elif self.color == "BLACK":
+
+                r, c = row + 1, col - 1
+                while r <= 7 and c >= 0:
+                    moves.append((r, c))
+                    r += 1
+                    c -= 1
+
+                r, c = row + 1, col + 1
+                while r <= 7 and c <= 7:
+                    moves.append((r, c))
+                    r += 1
+                    c += 1
+                
+            return moves
+
+#in test_eat_pieces_with_pawn_black
+#    self.assertEqual(set(pawn.eat_pieces_with_peon(start_row, start_col)), set(moves))
+#TypeError: 'NoneType' object is not iterable  
+# ESTE ERROR  FUE PORQUE OLVIDE UN "RETURN"
+
+
 #############
