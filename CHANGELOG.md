@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.4] - 2024-08-20
+### Added
+
+- Added queen and its tests.
+
 # [0.0.3] - 2024-08-19
 ### Added
 - Modified board and its tests.
