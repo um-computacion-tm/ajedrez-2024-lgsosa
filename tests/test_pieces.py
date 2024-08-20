@@ -8,14 +8,27 @@ class TestRook(unittest.TestCase):
         expected_moves = [(i, 0) for i in range(8) if i != 0] + [(0, i) for i in range(8) if i != 0]
         self.assertEqual(rook.movimientos_basicos_de_torres(0, 0), expected_moves)
 
+
 class TestAlfils(unittest.TestCase):
-    def test_movimientos_basicos_de_alfiles(self):
-        alfils = Alfils("negro")
-        self.assertEqual(alfils.color, "negro")
-        expected_moves = [
-            (i, j) for i in range(8) for j in range(8) if abs(i - 3) == abs(j - 3) and (i, j) != (3, 3)
-        ]
-        self.assertEqual(set(alfils.movimientos_basicos_de_alfiles(3, 3)), set(expected_moves))
+    def test_diagonal_moves(self):
+        # Test para diagonal_moves
+        expected_moves = [(2, 2), (1, 1), (0, 0)]  # Movimientos esperados para la diagonal superior izquierda desde (3, 3)
+        self.assertEqual(Alfils.diagonal_moves(3, 3, -1, -1), expected_moves)
+
+        expected_moves = [(2, 4), (1, 5), (0, 6)]  # Movimientos esperados para la diagonal superior derecha desde (3, 3)
+        self.assertEqual(Alfils.diagonal_moves(3, 3, -1, 1), expected_moves)
+
+        expected_moves = [(4, 2), (5, 1), (6, 0)]  # Movimientos esperados para la diagonal inferior izquierda desde (3, 3)
+        self.assertEqual(Alfils.diagonal_moves(3, 3, 1, -1), expected_moves)
+
+        expected_moves = [(4, 4), (5, 5), (6, 6), (7, 7)]  # Movimientos esperados para la diagonal inferior derecha desde (3, 3)
+        self.assertEqual(Alfils.diagonal_moves(3, 3, 1, 1), expected_moves)
+
+    def test_eat_pieces_with_peon(self):
+        # Test para eat_pieces_with_peon
+        alfils = Alfils("WHITE")
+        expected_moves = [(2, 2), (1, 1), (0, 0), (2, 4), (1, 5), (0, 6), (4, 2), (5, 1), (6, 0), (4, 4), (5, 5), (6, 6), (7, 7)]
+        self.assertEqual(alfils.eat_pieces_with_peon(3, 3), expected_moves)
 
 
 class TestKnight(unittest.TestCase):
