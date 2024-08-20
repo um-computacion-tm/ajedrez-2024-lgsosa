@@ -8,7 +8,7 @@ WORKDIR /ajedrez-2024-lgsosa
 RUN pip install -r requirements.txt
 
 # CMD corregido
-CMD ["sh", "-c", "coverage run -m unittest discover -s tests && coverage report -m && python main.py"]
+CMD ["sh", "-c", "coverage run -m unittest discover -s tests && coverage report -m && python main.py" , "cli.py"]
 
 
 

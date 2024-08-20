@@ -28,37 +28,22 @@ class Rook(Piece):
 #############
 
 class Alfils(Piece):
-    def movimientos_basicos_de_alfiles(self, row, col):
+    def diagonal_moves(row, col, delta_row, delta_col):  #cambie todo en uno y calculo los movimientos por un lado
+        movimientos = []
+        r, c = row + delta_row, col + delta_col
+        while 0 <= r <= 7 and 0 <= c <= 7:
+            movimientos.append((r, c))
+            r += delta_row
+            c += delta_col
+        return movimientos
+    
+    def eat_pieces_with_peon(self, row, col): #(+mantenimiento)
         moves = []
-
-        ### ARRIBA IZQUIERDA ###
-        r, c = row - 1, col - 1
-        while r >= 0 and c >= 0:
-            moves.append((r, c))
-            r -= 1
-            c -= 1
-
-        ### ARRIBA DERECHA ###
-        r, c = row - 1, col + 1
-        while r >= 0 and c <= 7:
-            moves.append((r, c))
-            r -= 1
-            c += 1
-
-        ### ABAJO IZQUIERDA ###
-        r, c = row + 1, col - 1
-        while r <= 7 and c >= 0:
-            moves.append((r, c))
-            r += 1
-            c -= 1
-
-        ### ABAJO DERECHA ###
-        r, c = row + 1, col + 1
-        while r <= 7 and c <= 7:
-            moves.append((r, c))
-            r += 1
-            c += 1
-
+        
+        moves += Pawn.diagonal_moves(row, col, -1, -1)
+        moves += Pawn.diagonal_moves(row, col, -1, 1)
+        moves += Pawn.diagonal_moves(row, col, 1, -1)
+        moves += Pawn.diagonal_moves(row, col, 1, 1)
         return moves
 #############
 
@@ -131,38 +116,24 @@ class Pawn(Piece):
             return [(0, -1), (0, -2), (-1, -1), (1, -1)]
 
 
-    def eat_pieces_with_peon(self, row, col):
-            moves = []
+    def diagonal_moves(row, col, delta_row, delta_col):  #cambie todo en uno y calculo los movimientos por un lado
+        movimientos = []
+        r, c = row + delta_row, col + delta_col
+        while 0 <= r <= 7 and 0 <= c <= 7:
+            movimientos.append((r, c))
+            r += delta_row
+            c += delta_col
+        return movimientos
 
-            if self.color == "WHITE":
-
-                r, c = row - 1, col - 1
-                while r >= 0 and c >= 0:
-                    moves.append((r, c))
-                    r -= 1
-                    c -= 1
-
-                r, c = row - 1, col + 1
-                while r >= 0 and c <= 7:
-                    moves.append((r, c))
-                    r -= 1
-                    c += 1
-            
-            elif self.color == "BLACK":
-
-                r, c = row + 1, col - 1
-                while r <= 7 and c >= 0:
-                    moves.append((r, c))
-                    r += 1
-                    c -= 1
-
-                r, c = row + 1, col + 1
-                while r <= 7 and c <= 7:
-                    moves.append((r, c))
-                    r += 1
-                    c += 1
-                
-            return moves
+    def eat_pieces_with_peon(self, row, col): #la diagonal del peon ahora esta apartada y simplemente llama a la funcion diagonal_moves (+mantenimiento)
+        movimientos = []
+        if self.color == "WHITE":
+            movimientos += Pawn.diagonal_moves(row, col, -1, -1)
+            movimientos += Pawn.diagonal_moves(row, col, -1, 1)
+        elif self.color == "BLACK":
+            movimientos += Pawn.diagonal_moves(row, col, 1, -1)
+            movimientos += Pawn.diagonal_moves(row, col, 1, 1)
+        return movimientos
 
 #in test_eat_pieces_with_pawn_black
 #    self.assertEqual(set(pawn.eat_pieces_with_peon(start_row, start_col)), set(moves))
