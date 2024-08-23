@@ -4,9 +4,7 @@ All notable changes to this project will be documented in this file.
 # [0.0.5] - 2024-08-22
 ### Added
 
-- Added queen and its tests.
-- Added pawn and its tests.
-
+- Changes in 
 # [0.0.4] - 2024-08-20
 ### Added
 
