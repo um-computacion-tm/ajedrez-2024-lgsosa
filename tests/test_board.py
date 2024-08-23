@@ -1,6 +1,6 @@
 import unittest
 from ajedrez.board import Board 
-from ajedrez.pieces import Rook 
+from ajedrez.all_pieces.rook import Rook
 
 class TestBoard(unittest.TestCase):
     
