@@ -1,4 +1,4 @@
-from ajedrez.pieces import Rook
+from ajedrez.all_pieces.rook import Rook
 
 
 class Board:
