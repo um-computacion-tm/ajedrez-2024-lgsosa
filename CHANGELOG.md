@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.7] - 2024-08-24
+### Added
+
+- Add testking
+
 # [0.0.6] - 2024-08-23
 ### Added
 

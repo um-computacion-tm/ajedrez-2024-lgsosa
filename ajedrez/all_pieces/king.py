@@ -4,11 +4,14 @@ class King(Piece):
     def basic_king_moves(self,row,col):
         moves=[]
 
+        #coordenadas relativas
+        
         directions = [
-            (3, 3)  (3, 4)  (3, 5)
-            (4, 3)  (4, 4)  (4, 5)
-            (5, 3)  (5, 4)  (5, 5)
-]
+            (-1, -1), (-1, 0), (-1, 1),
+            ( 0, -1),         ( 0, 1),
+            ( 1, -1), ( 1, 0), ( 1, 1)
+        ]
+
         
         #itero sobre todas las direcciones
         for direction_row, direction_col in directions:
