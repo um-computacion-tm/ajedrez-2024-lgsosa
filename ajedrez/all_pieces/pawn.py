@@ -1,8 +1,8 @@
 from ajedrez.pieces import Piece
 
 class Pawn(Piece):
-    def __init__(self, color):
-        super().__init__(color)
+    def __init__(self, color, row=None, col=None):
+        super().__init__(color, row, col)
     
     def basic_pawn_moves(self, row, col):
         moves = []
@@ -36,6 +36,9 @@ class Pawn(Piece):
             movimientos += Pawn.diagonal_moves(row, col, 1, -1)
             movimientos += Pawn.diagonal_moves(row, col, 1, 1)
         return movimientos
+    
+    def get_possible_moves(self, board, row, col):
+        return self.eat_pieces_with_peon(row, col)
 
 #in test_eat_pieces_with_pawn_black
 #    self.assertEqual(set(pawn.eat_pieces_with_peon(start_row, start_col)), set(moves))

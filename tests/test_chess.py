@@ -6,21 +6,20 @@ class TestChess(unittest.TestCase):
     def setUp(self):
         #inicializa un nuevo tablero.
         self.board = Board()
+        self.chess_game = Chess()
 
     def test_initial_turn(self):
         chess_game = Chess () #nueva partida
         self.assertEqual(chess_game.turn, "WHITE") #verifico que el 1er turno sea del blanco
 
     def test_turn_change_correctly(self):
-        chess_game = Chess () #nueva partida
-        self.assertEqual(chess_game.turn, "WHITE") #verifico que el 1er turno sea del blanco
+        chess_game = Chess()  # Nueva partida
+        self.assertEqual(chess_game.turn, "WHITE")  # Verifico que el primer turno sea del blanco
 
-        #debo de realizar un movimiento como 2do paso
-        chess_game.move (0,0,1,0) #aca supongo que el movimiento es valido (luego en el test_board verificare si lo es o no)
-        "(fila origen, columna origen, fila destino, columna destino)"
+        # Realizo un movimiento (supongamos que es válido)
+        chess_game.move(0, 0, 1, 0)  # (fila origen, columna origen, fila destino, columna destino)
 
-
-        #verifico el cambio de turno (que es lo que busco)
+        # Verifico el cambio de turno
         self.assertEqual(chess_game.turn, "BLACK")
 
     def test_turn_does_not_change_on_invalid_move(self):

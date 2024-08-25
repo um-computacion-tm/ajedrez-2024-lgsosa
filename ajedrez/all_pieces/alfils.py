@@ -1,6 +1,9 @@
 from ajedrez.pieces import Piece
 
 class Alfils(Piece):
+    def __init__(self, color, row=None, col=None):
+        super().__init__(color, row, col)
+
     def diagonal_moves(row, col, delta_row, delta_col):  #cambie todo en uno y calculo los movimientos por un lado
         movimientos = []
         r, c = row + delta_row, col + delta_col
@@ -10,7 +13,7 @@ class Alfils(Piece):
             c += delta_col
         return movimientos
     
-    def eat_pieces_with_peon(self, row, col): #(+mantenimiento)
+    def basic_alfils_moves(self, row, col): #(+mantenimiento)
         moves = []
         
         moves += Alfils.diagonal_moves(row, col, -1, -1)
@@ -18,4 +21,7 @@ class Alfils(Piece):
         moves += Alfils.diagonal_moves(row, col, 1, -1)
         moves += Alfils.diagonal_moves(row, col, 1, 1)
         return moves
+    
+    def get_possible_moves(self, board, row, col):
+        return self.basic_alfils_moves(row, col)
 #############

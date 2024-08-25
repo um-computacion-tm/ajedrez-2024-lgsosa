@@ -1,8 +1,8 @@
 from ajedrez.pieces import Piece
 
 class Queen(Piece):
-    def __init__(self, color):
-        super().__init__(color)
+    def __init__(self, color, row=None, col=None):
+        super().__init__(color, row, col)
 
     def basic_queen_moves(self, row, col):
         moves = []
@@ -25,4 +25,6 @@ class Queen(Piece):
                 c += direction_c
 
         return moves
-
+    
+    def get_possible_moves(self, board, row, col):
+        return self.basic_queen_moves(row, col)

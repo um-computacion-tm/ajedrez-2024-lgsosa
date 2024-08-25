@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.8] - 2024-08-25
+### Added
+
+- Add pieces to the board
+
 # [0.0.7] - 2024-08-24
 ### Added
 
