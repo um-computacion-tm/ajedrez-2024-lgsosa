@@ -20,3 +20,5 @@ class Piece(ABC):
 
     def get_position(self):
         return self.row, self.col
+
+

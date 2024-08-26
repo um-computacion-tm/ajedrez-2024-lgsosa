@@ -22,6 +22,7 @@ class Alfils(Piece):
         moves += Alfils.diagonal_moves(row, col, 1, 1)
         return moves
     
-    def get_possible_moves(self, board, row, col):
-        return self.basic_alfils_moves(row, col)
+    def get_possible_moves(self):
+        return self.basic_alfils_moves()
+
 #############
