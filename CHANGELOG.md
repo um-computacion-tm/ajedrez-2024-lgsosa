@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.10] - 2024-08-28
+### Added
+
+- Changes in pawn because has errors
+
 # [0.0.9] - 2024-08-26
 ### Added
 

@@ -51,3 +51,8 @@ class Board:
     
     def remove_piece(self, row, col):
         self.__positions__[row][col] = None
+    
+    def is_within_bounds(self, row, col):
+        return 0 <= row < 8 and 0 <= col < 8
+
+    

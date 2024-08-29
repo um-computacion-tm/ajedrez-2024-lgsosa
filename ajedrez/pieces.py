@@ -10,7 +10,6 @@ class Piece(ABC):
     def color(self):
         return self._color
     
-    @abstractmethod
     def get_possible_moves(self, board, row, col):
         pass
 

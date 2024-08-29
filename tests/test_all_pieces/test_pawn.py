@@ -1,61 +1,38 @@
 import unittest
 from ajedrez.all_pieces.pawn import Pawn
+from ajedrez.board import Board  # Asegúrate de que Board esté correctamente importado
 
 class TestPawn(unittest.TestCase):
-    def test_basic_pawn_moves_black(self):
-        pawn = Pawn("BLACK")#creo un peon
-        self.assertEqual(pawn.color, "BLACK")
-        expected_moves = [(0, -1), (0, -2), (-1, -1), (1, -1)]
-        self.assertEqual(pawn.basic_pawn_moves(0, 0), expected_moves)
-
+    
+    def setUp(self):
+        # Inicializa los peones blancos y negros
+        self.pawn_white = Pawn("WHITE", 6, 1)
+        self.pawn_black = Pawn("BLACK", 1, 1)
+        self.board = Board()  # Asume que Board es la clase que define el tablero
+    
     def test_basic_pawn_moves_white(self):
-        pawn = Pawn("WHITE")#creo un peon
-        self.assertEqual(pawn.color, "WHITE")
-        expected_moves = [(0, 1), (0, 2), (-1, 1), (1, 1)]
-        self.assertEqual(pawn.basic_pawn_moves(0, 0), expected_moves)
-
-    def test_eat_pieces_with_pawn_black(self):
-        pawn = Pawn ("BLACK")
-        self.assertEqual(pawn.color, "BLACK")
-        moves = []
-        start_row, start_col = 6, 1
-
-        r, c = start_row + 1, start_col - 1
-        while r <= 7 and c >= 0:
-            moves.append((r, c))
-            r += 1
-            c -= 1
-
-        r, c = start_row + 1, start_col + 1
-        while r <= 7 and c <= 7:
-            moves.append((r, c))
-            r += 1
-            c += 1
-
-
-        self.assertEqual(set(pawn.eat_pieces_with_peon(start_row, start_col)), set(moves))
-
-    def test_eat_pieces_with_pawn_white(self):
-        pawn = Pawn ("WHITE")
-        self.assertEqual(pawn.color, "WHITE")
-        moves = []
-        start_row, start_col = 6, 1
-
-        r, c = start_row - 1, start_col - 1
-        while r >= 0 and c >= 0:
-                    moves.append((r, c))
-                    r -= 1
-                    c -= 1
-
-        r, c = start_row - 1, start_col + 1
-        while r >= 0 and c <= 7:
-                    moves.append((r, c))
-                    r -= 1
-                    c += 1
-
-
-        self.assertEqual(set(pawn.eat_pieces_with_peon(start_row, start_col)), set(moves))
+        expected_moves = [(5, 1), (4, 1)]
+        self.assertEqual(self.pawn_white.basic_pawn_moves(6, 1), expected_moves)
+    
+    def test_basic_pawn_moves_black(self):
+        expected_moves = [(2, 1), (3, 1)]
+        self.assertEqual(self.pawn_black.basic_pawn_moves(1, 1), expected_moves)
+    
+    def test_eat_pieces_with_peon_white(self):
+        expected_moves = [(5, 0), (5, 2)]
+        self.assertEqual(self.pawn_white.eat_pieces_with_peon(6, 1), expected_moves)
+    
+    def test_eat_pieces_with_peon_black(self):
+        expected_moves = [(2, 0), (2, 2)]
+        self.assertEqual(self.pawn_black.eat_pieces_with_peon(1, 1), expected_moves)
+    
+    def test_get_possible_moves_white(self):
+        expected_moves = [(5, 1), (4, 1), (5, 0), (5, 2)]
+        self.assertEqual(self.pawn_white.get_possible_moves(self.board, 6, 1), expected_moves)
+    
+    def test_get_possible_moves_black(self):
+        expected_moves = [(2, 1), (3, 1), (2, 0), (2, 2)]
+        self.assertEqual(self.pawn_black.get_possible_moves(self.board, 1, 1), expected_moves)
 
 if __name__ == '__main__':
     unittest.main()
-
