@@ -1,8 +1,8 @@
 from ajedrez.pieces import Piece
 
 class Knight(Piece):
-    def __init__(self, color):
-        super().__init__(color)
+    def __init__(self, color, row=None, col=None):
+        super().__init__(color, row, col)
 
     def basic_knight_moves(self, row, col):
         moves = []
@@ -17,5 +17,7 @@ class Knight(Piece):
                 moves.append((r,c))
             
         return moves
-
+    
+    def get_possible_moves(self, board, row, col):
+        return self.basic_knight_moves(row, col)
 #############

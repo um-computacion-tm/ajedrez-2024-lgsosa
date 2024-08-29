@@ -1,10 +1,36 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.10] - 2024-08-28
+### Added
+
+- Changes in pawn because has errors
+
+# [0.0.9] - 2024-08-26
+### Added
+
+- Changes in chess
+
+# [0.0.8] - 2024-08-25
+### Added
+
+- Add pieces to the board
+
+# [0.0.7] - 2024-08-24
+### Added
+
+- Add testking
+
+# [0.0.6] - 2024-08-23
+### Added
+
+- Add king
+
 # [0.0.5] - 2024-08-22
 ### Added
 
-- Changes in 
+- Changes of folders
+
 # [0.0.4] - 2024-08-20
 ### Added
 
