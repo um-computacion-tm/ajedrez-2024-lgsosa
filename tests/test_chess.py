@@ -8,8 +8,7 @@ class TestChess(unittest.TestCase):
         self.board = Board()
         self.chess_game = Chess()
         
-
-"""    def test_initial_turn(self):
+    def test_initial_turn(self):
         chess_game = Chess () #nueva partida
         self.assertEqual(chess_game.turn, "WHITE") #verifico que el 1er turno sea del blanco
 
@@ -29,11 +28,18 @@ class TestChess(unittest.TestCase):
         # Verifico el cambio de turno
         self.assertEqual(chess_game.turn, "BLACK")
 
-
     def test_turn_does_not_change_on_invalid_move(self):
+        # Verificar que el turno no cambie cuando se realiza un movimiento inválido.
         chess_game = Chess()
-        chess_game.move(4, 4, 5, 5)  # Movimiento sin pieza en la posición de origen
-        self.assertEqual(chess_game.turn, "WHITE")  # El turno no debería cambiar"""
+        self.assertEqual(chess_game.turn, "WHITE")  # Verifica que comience con el turno blanco.
+
+        # Movimiento inválido desde una posición vacía
+        with self.assertRaises(ValueError):
+            chess_game.move(4, 4, 5, 5)
+        
+        # El turno no debería cambiar después de un movimiento inválido
+        self.assertEqual(chess_game.turn, "WHITE")
+
         
 if __name__ == "__main__":
     unittest.main()

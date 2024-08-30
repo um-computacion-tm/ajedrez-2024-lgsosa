@@ -55,4 +55,14 @@ class Board:
     def is_within_bounds(self, row, col):
         return 0 <= row < 8 and 0 <= col < 8
 
+    def move_piece(self, from_row, from_col, to_row, to_col):
+        piece = self.get_piece(from_row, from_col)
+        if piece is None:
+            raise ValueError("No piece at the given position")
+        
+        # Mueve la pieza al nuevo lugar
+        self.set_piece(piece, to_row, to_col)  # Cambié place_piece a set_piece
+        self.remove_piece(from_row, from_col)
+
+
     

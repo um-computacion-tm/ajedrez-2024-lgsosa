@@ -13,8 +13,6 @@ class Chess:
         valid_moves = piece.get_possible_moves(self.__board__, from_row, from_col)
         return (to_row, to_col) in valid_moves
 
-
-
     def move(self, from_row, from_col, to_row, to_col):
         piece = self.__board__.get_piece(from_row, from_col)
         
@@ -28,11 +26,11 @@ class Chess:
         self.__board__.move_piece(from_row, from_col, to_row, to_col)
         
         # Cambia el turno
-        self.turn = "BLACK" if self.turn == "WHITE" else "WHITE"
+        self.__turn__ = "BLACK" if self.__turn__ == "WHITE" else "WHITE"  # Cambio aquí
 
     @property
     def turn(self):
         return self.__turn__
 
     def __change_turn__(self):
-        self.turn = "BLACK" if self.turn == "WHITE" else "WHITE"
+        self.__turn__ = "BLACK" if self.__turn__ == "WHITE" else "WHITE"  # Cambio aquí
