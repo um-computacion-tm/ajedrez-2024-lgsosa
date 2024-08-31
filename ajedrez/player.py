@@ -5,6 +5,7 @@ class Jugador:
         self.__color__ = color #ALMACENO el color del jugador
         self.__pieces__ = self._initialize_pieces_() #ALMACENO las piezas que movera cada jugador
         self.__board__= Board
+        self.__captured_pieces__ = [] #almaceno las piezad capturadas
 
 
     def _initialize_pieces_(self): #recorro del board y almaceno las piezas que pertenecen al jugador
@@ -31,8 +32,18 @@ class Jugador:
     def add_piece(self, piece): #para agregar una pieza al jugador (si este consigue llegar con el peon al final del tablero)
         self.__pieces__.append(piece)
 
+    def add_captured_piece(self, piece):
+        self.__captured_pieces__.append(piece)
+
     def remove_piece(self, piece): #para eliminar la pieza del jugador (cdo esta sea comida)
         self.__pieces__.remove(piece)
+
+    def calculate_score(self):
+        score = 0
+        for piece in self.__captured_pieces__:
+            score += piece.value  # Asume que cada pieza tiene un atributo 'value'
+        return score
+
 
 
 

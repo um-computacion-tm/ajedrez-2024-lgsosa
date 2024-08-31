@@ -3,6 +3,7 @@ from ajedrez.pieces import Piece
 class Alfils(Piece):
     def __init__(self, color, row=None, col=None):
         super().__init__(color, row, col)
+        self.symbol = "♗" if color == "WHITE" else "♝"
 
     def diagonal_moves(row, col, delta_row, delta_col):  #cambie todo en uno y calculo los movimientos por un lado
         movimientos = []

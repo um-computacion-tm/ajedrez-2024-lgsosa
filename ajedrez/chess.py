@@ -34,3 +34,6 @@ class Chess:
 
     def __change_turn__(self):
         self.__turn__ = "BLACK" if self.__turn__ == "WHITE" else "WHITE"  # Cambio aquí
+        
+    def show_board(self):
+        return self.__board__.show_board()

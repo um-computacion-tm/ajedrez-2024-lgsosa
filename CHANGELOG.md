@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.13] - 2024-08-31
+### Added
+
+- Changes in [ all pieces , add show_board and more options for players ]
+
 # [0.0.12] - 2024-08-30
 ### Added
 
