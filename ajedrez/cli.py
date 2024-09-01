@@ -3,11 +3,11 @@ from ajedrez.chess import Chess
 def main():
     chess = Chess()
     while True:
-        print(chess.show_board())  # Llama al método de instancia de Chess para mostrar el tablero
+        print(chess.show_board())
         
         # Verifica si alguno de los jugadores se quedó sin piezas
-        if not chess.player1.pieces or not chess.player2.pieces:
-            print(f"Game Over! {'Player 1' if not chess.player1.pieces else 'Player 2'} has no more pieces left.")
+        if not chess.__white_player__.__pieces__ or not chess.__black_player__.__pieces__:
+            print(f"Game Over! {'White Player' if not chess.__white_player__.__pieces__ else 'Black Player'} has no more pieces left.")
             break
         
         # Opción para terminar el juego de mutuo acuerdo
@@ -16,6 +16,7 @@ def main():
             print("The game has ended by agreement.")
             break
 
+        # Aquí podrías llamar a la función que maneja el turno y movimientos del jugador
         play(chess)
         
 def play(chess):

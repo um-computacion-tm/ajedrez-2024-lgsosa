@@ -1,11 +1,11 @@
 from ajedrez.board import Board
 
-class Jugador:
-    def __init__(self,color):
-        self.__color__ = color #ALMACENO el color del jugador
-        self.__pieces__ = self._initialize_pieces_() #ALMACENO las piezas que movera cada jugador
-        self.__board__= Board
-        self.__captured_pieces__ = [] #almaceno las piezad capturadas
+class Player:
+    def __init__(self, color, board):
+        self.__color__ = color  # Almacena el color del jugador
+        self.__board__ = board  # Almacena la instancia del tablero
+        self.__pieces__ = self._initialize_pieces_()  # Almacena las piezas que moverá cada jugador
+        self.__captured_pieces__ = []  # Almacena las piezas capturadas
 
 
     def _initialize_pieces_(self): #recorro del board y almaceno las piezas que pertenecen al jugador

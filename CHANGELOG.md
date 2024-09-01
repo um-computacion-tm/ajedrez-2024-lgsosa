@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.14] - 2024-09-01
+### Added
+
+- Changes in cli.py
+
 # [0.0.13] - 2024-08-31
 ### Added
 
