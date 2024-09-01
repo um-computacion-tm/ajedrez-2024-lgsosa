@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.14] - 2024-09-01
+### Added
+
+- Changes in cli.py
+
+# [0.0.13] - 2024-08-31
+### Added
+
+- Changes in [ all pieces , add show_board and more options for players ]
+
+# [0.0.12] - 2024-08-30
+### Added
+
+- Add player
+
 # [0.0.11] - 2024-08-29
 ### Added
 
@@ -9,7 +24,7 @@ All notable changes to this project will be documented in this file.
 # [0.0.10] - 2024-08-28
 ### Added
 
-- Changes in pawn because has errors
+- Changes in pawn because has errors (second sprint)
 
 # [0.0.9] - 2024-08-26
 ### Added

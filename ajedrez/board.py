@@ -65,4 +65,19 @@ class Board:
         self.remove_piece(from_row, from_col)
 
 
-    
+    def show_board(self):
+        # Encabezado de columnas
+        header = "   "  # Espacio inicial para la alineación
+        header += " ".join([f"{i:^5}" for i in range(8)])  # Centrando los números
+        board_str = header + "\n"
+
+        for row_idx, row in enumerate(self.__positions__):
+            row_str = f"{row_idx} "  # Número de fila
+            for cell in row:
+                if cell is None:
+                    row_str += "[   ] "  # Espacio para las celdas vacías
+                else:
+                    row_str += f"[{cell.symbol:^3}] "  # Centrar símbolo de pieza
+            board_str += row_str + "\n"
+
+        return board_str
