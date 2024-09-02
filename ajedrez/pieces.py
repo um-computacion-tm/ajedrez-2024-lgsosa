@@ -1,6 +1,4 @@
-from abc import ABC, abstractmethod
-
-class Piece(ABC):
+class Piece():
     def __init__(self, color, row=None, col=None):
         self._color = color
         self.row = row
