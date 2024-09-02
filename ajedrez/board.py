@@ -42,10 +42,15 @@ class Board:
         for i in range(8):
             self.__positions__[1][i] = Pawn("BLACK", 1, i)
             self.__positions__[6][i] = Pawn("WHITE", 6, i)
+    
+
         
     def get_piece(self, row, col):
         return self.__positions__[row][col]
-    
+
+    def is_empty(self, row, col):
+        return self.get_piece(row, col) is None
+
     def set_piece(self, piece, row, col):
         self.__positions__[row][col] = piece
     
@@ -60,8 +65,14 @@ class Board:
         if piece is None:
             raise ValueError("No piece at the given position")
         
+        # Actualiza la posición de la pieza
+        piece.row = to_row
+        piece.col = to_col
+        
         # Mueve la pieza al nuevo lugar
-        self.set_piece(piece, to_row, to_col)  # Cambié place_piece a set_piece
+        self.set_piece(piece, to_row, to_col)
+        
+        # Elimina la pieza de la posición original
         self.remove_piece(from_row, from_col)
 
 
