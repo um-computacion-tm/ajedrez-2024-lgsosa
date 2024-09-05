@@ -11,12 +11,20 @@ def main():
             break
         
         # Opción para terminar el juego de mutuo acuerdo
-        end_game = input("Do you both agree to end the game? (yes/no): ").lower()
-        if end_game == "yes":
-            print("The game has ended by agreement.")
-            break
-
-        # Aquí podrías llamar a la función que maneja el turno y movimientos del jugador
+        while True:
+            player1_response = input("White Player, do you agree to end the game? (yes/no): ").lower()
+            player2_response = input("Black Player, do you agree to end the game? (yes/no): ").lower()
+            
+            # Ambos deben ingresar 'yes' para finalizar
+            if player1_response == "yes" and player2_response == "yes":
+                print("Both players agreed. The game has ended by agreement.")
+                return  # Termina el juego
+            elif player1_response == "no" or player2_response == "no":
+                print("One or both players chose to continue. The game will go on.")
+                break
+            else:
+                print("Invalid input. Please enter 'yes' or 'no'.")
+        
         play(chess)
         
 def play(chess):
