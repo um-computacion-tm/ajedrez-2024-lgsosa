@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.16] - 2024-09-04
+### Added
+
+- Changes in alfils
+
 # [0.0.15] - 2024-09-02
 ### Added
 
