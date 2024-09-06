@@ -1,6 +1,20 @@
 from ajedrez.chess import Chess
+import os
+
+def show_welcome_message():
+    os.system('clear') # Clears the screen (on Linux/Mac)
+    print("**********************************************")
+    print("* *")
+    print("* CHESS *")
+    print("* *")
+    print("**********************************************")
+    print("\n Press Enter or any key to start...")
+
+    input() # Waits for the user to press any key
 
 def main():
+    show_welcome_message()
+    print("\n\n\nThe game has started...\n\n\n")
     chess = Chess()
     while True:
         print(chess.show_board())

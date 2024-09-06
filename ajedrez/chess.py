@@ -33,6 +33,14 @@ class Chess:
         if target_piece:
             current_player = self.__white_player__ if self.__turn__ == "WHITE" else self.__black_player__
             current_player.add_captured_piece(target_piece)
+            
+        # Check if either player has no more pieces
+        if not self.__white_player__.__pieces__:
+            print("Black wins! White has no more pieces.")
+            return
+        elif not self.__black_player__.__pieces__:
+            print("White wins! Black has no more pieces.")
+            return
 
         self.__change_turn__()
 

@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.18] - 2024-09-06
+### Added
+
+- Changes in cli, chess, player
+
 # [0.0.17] - 2024-09-05
 ### Added
 

@@ -1,6 +1,6 @@
 from ajedrez.board import Board
 
-class Player:
+class Player():
     def __init__(self, color, board):
         self.__color__ = color  # Almacena el color del jugador
         self.__board__ = board  # Almacena la instancia del tablero
