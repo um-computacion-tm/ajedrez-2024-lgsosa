@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.20] - 2024-09-08
+### Added
+
+- Changes in test_cli and test_pieces
+
 # [0.0.19] - 2024-09-07
 ### Added
 
