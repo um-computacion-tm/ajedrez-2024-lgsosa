@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.21] - 2024-09-11
+### Added
+
+- Add tests in test_player
+
+# [0.0.20] - 2024-09-08
+### Added
+
+- Changes in test_cli and test_pieces
+
+# [0.0.19] - 2024-09-07
+### Added
+
+- Changes in tests
+
 # [0.0.18] - 2024-09-06
 ### Added
 
