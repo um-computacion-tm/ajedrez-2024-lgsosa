@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.21] - 2024-09-11
+### Added
+
+- Add tests in test_player
+
 # [0.0.20] - 2024-09-08
 ### Added
 

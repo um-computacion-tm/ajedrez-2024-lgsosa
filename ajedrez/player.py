@@ -28,10 +28,6 @@ class Player():
         
         self.__board__.move_piece(from_row, from_col, to_row, to_col)
 
-
-    def add_piece(self, piece): #para agregar una pieza al jugador (si este consigue llegar con el peon al final del tablero)
-        self.__pieces__.append(piece)
-
     def add_captured_piece(self, piece):
         self.__captured_pieces__.append(piece)
 
