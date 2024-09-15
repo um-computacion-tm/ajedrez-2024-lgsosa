@@ -61,6 +61,9 @@ class Board:
         return 0 <= row < 8 and 0 <= col < 8
 
     def move_piece(self, from_row, from_col, to_row, to_col):
+        if not self.is_within_bounds(to_row, to_col):
+            raise ValueError("Move is out of bounds")
+        
         piece = self.get_piece(from_row, from_col)
         if piece is None:
             raise ValueError("No piece at the given position")
@@ -74,6 +77,7 @@ class Board:
         
         # Elimina la pieza de la posición original
         self.remove_piece(from_row, from_col)
+
 
 
     def show_board(self):
