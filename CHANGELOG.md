@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.22] - 2024-09-14
+### Added
+
+- Add tests in test_board for more coverage (95%)
+
 # [0.0.21] - 2024-09-11
 ### Added
 
