@@ -16,29 +16,31 @@ def main():
     show_welcome_message()
     print("\n\n\nThe game has started...\n\n\n")
     chess = Chess()
-    while True:
+    game_active = True  #juego sigue activo si o no? verifico con esto
+    
+    while game_active:
         print(chess.show_board())
 
-        # Verifica si el juego ha terminado
         if game_over(chess):
+            game_active = False
             break
         
-        # Opción para terminar el juego de mutuo acuerdo
         while True:
             player1_response = input("White Player, do you agree to end the game? (yes/no): ").lower()
             player2_response = input("Black Player, do you agree to end the game? (yes/no): ").lower()
             
-            # Ambos deben ingresar 'yes' para finalizar
             if player1_response == "yes" and player2_response == "yes":
                 print("Both players agreed. The game has ended by agreement.")
-                return  # Termina el juego
+                game_active = False
+                return 
             elif player1_response == "no" or player2_response == "no":
                 print("One or both players chose to continue. The game will go on.")
                 break
             else:
                 print("Invalid input. Please enter 'yes' or 'no'.")
         
-        play(chess)
+        play(chess) 
+
 
 def game_over(chess):
     """

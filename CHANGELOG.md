@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.24] - 2024-09-17
+### Added
+
+- Changes in cli
+
 # [0.0.23] - 2024-09-16
 ### Added
 
