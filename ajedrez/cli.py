@@ -16,31 +16,35 @@ def main():
     show_welcome_message()
     print("\n\n\nThe game has started...\n\n\n")
     chess = Chess()
-    game_active = True  #juego sigue activo si o no? verifico con esto
+    game_active = True  # Juego sigue activo
     
     while game_active:
         print(chess.show_board())
 
+        # Verifica si el juego ha terminado por captura de un rey
         if game_over(chess):
-            game_active = False
+            game_active = False  # Termina el juego si se captura un rey
             break
         
+        # Si el juego no ha terminado, ofrecer a los jugadores la opción de finalizar
         while True:
             player1_response = input("White Player, do you agree to end the game? (yes/no): ").lower()
             player2_response = input("Black Player, do you agree to end the game? (yes/no): ").lower()
             
+            # Ambos deben estar de acuerdo para finalizar el juego
             if player1_response == "yes" and player2_response == "yes":
                 print("Both players agreed. The game has ended by agreement.")
                 game_active = False
-                return 
+                return  # Finaliza el juego
             elif player1_response == "no" or player2_response == "no":
                 print("One or both players chose to continue. The game will go on.")
                 break
             else:
                 print("Invalid input. Please enter 'yes' or 'no'.")
-        
-        play(chess) 
 
+        # Ejecutar el turno de juego solo si el juego sigue activo
+        if game_active:
+            play(chess)  # Lógica de turno
 
 def game_over(chess):
     """

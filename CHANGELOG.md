@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.25] - 2024-09-18
+### Added
+
+- Changes have been made to 'cli', but no final fix has been implemented yet.
+
 # [0.0.24] - 2024-09-17
 ### Added
 
