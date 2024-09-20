@@ -1,45 +1,73 @@
 import unittest
 from ajedrez.board import Board
 from ajedrez.chess import Chess
+from ajedrez.pieces import Piece
+
 
 class TestChess(unittest.TestCase):
+    
     def setUp(self):
-        #inicializa un nuevo tablero.
-        self.board = Board()
+        """Este método se ejecuta antes de cada test para crear una nueva instancia del juego de ajedrez."""
         self.chess_game = Chess()
-        
+
     def test_initial_turn(self):
-        chess_game = Chess () #nueva partida
-        self.assertEqual(chess_game.turn, "WHITE") #verifico que el 1er turno sea del blanco
+        """Verifica que el turno inicial sea de las blancas."""
+        self.assertEqual(self.chess_game.turn, "WHITE")
 
-    def test_turn_change_correctly(self):
-        chess_game = Chess()  # Nueva partida
-        self.assertEqual(chess_game.turn, "WHITE")  # Verifico que el primer turno sea del blanco
+    def test_change_turn(self):
+        """Verifica que el turno cambie correctamente después de una jugada."""
+        piece = self.chess_game.__board__.get_piece(1, 0)
+        self.chess_game.move(1, 0, 3, 0)  # Mueve un peón blanco
+        self.assertEqual(self.chess_game.turn, "BLACK")
 
-        # Accedo al tablero desde la instancia de chess_game
-        board = chess_game.__board__
-        
-        # Selecciono una pieza blanca válida (por ejemplo, un peón)
-        piece = board.get_piece(6, 0)  # Obtengo el peón en (6, 0)
-        
-        # Realizo el movimiento (por ejemplo, el peón se mueve de (6, 0) a (5, 0))
-        chess_game.move(6, 0, 5, 0)  # (fila origen, columna origen, fila destino, columna destino)
+    def test_is_valid_move(self):
+        """Verifica que un movimiento válido sea reconocido correctamente."""
+        piece = self.chess_game.__board__(1, 0)
+        self.assertTrue(self.chess_game.is_valid_move(piece, 3, 0))
 
-        # Verifico el cambio de turno
-        self.assertEqual(chess_game.turn, "BLACK")
+    def test_invalid_move(self):
+        """Verifica que un movimiento inválido levante un error."""
+        piece = self.chess_game.__board__.get_piece(1, 0)
+        self.assertFalse(self.chess_game.is_valid_move(piece, 4, 0))
+
+    def test_move_valid(self):
+        """Verifica que una pieza se mueva correctamente cuando el movimiento es válido."""
+        self.chess_game.move(1, 0, 3, 0)  # Mover un peón blanco de (1, 0) a (3, 0)
+        piece = self.chess_game.__board__.get_piece(3, 0)
+        self.assertIsNotNone(piece)
+
+    def test_move_invalid(self):
+        """Verifica que un movimiento inválido levante un error."""
+        with self.assertRaises(ValueError):
+            self.chess_game.move(1, 0, 4, 0)  # Intentar mover el peón blanco a una posición inválida
+
+    def test_capture_piece(self):
+        """Verifica que una pieza sea capturada correctamente."""
+        self.chess_game.__board__.get_piece(6, 0, Piece("BLACK", 6, 0))
+        self.chess_game.move(1, 0, 6, 0)  # Mueve el peón blanco para capturar la pieza negra
+        self.assertIsNone(self.chess_game.__board__.get_piece(6, 0))  # La pieza negra debe haber sido capturada
+
+    def test_move_from_empty_square(self):
+        """Verifica que intentar mover desde una casilla vacía levante un error."""
+        with self.assertRaises(ValueError):
+            self.chess_game.move(3, 3, 4, 4)  # Intentar mover desde una casilla vacía
 
     def test_turn_does_not_change_on_invalid_move(self):
-        # Verificar que el turno no cambie cuando se realiza un movimiento inválido.
-        chess_game = Chess()
-        self.assertEqual(chess_game.turn, "WHITE")  # Verifica que comience con el turno blanco.
-
-        # Movimiento inválido desde una posición vacía
+        """Verifica que el turno no cambie cuando se realiza un movimiento inválido."""
+        self.assertEqual(self.chess_game.turn, "WHITE")
         with self.assertRaises(ValueError):
-            chess_game.move(4, 4, 5, 5)
-        
-        # El turno no debería cambiar después de un movimiento inválido
-        self.assertEqual(chess_game.turn, "WHITE")
+            self.chess_game.move(3, 3, 4, 4)  # Mover desde una casilla vacía (movimiento inválido)
+        self.assertEqual(self.chess_game.turn, "WHITE")  # El turno no debería haber cambiado
 
-        
-if __name__ == "__main__":
+    def test_game_over_white_wins(self):
+        """Verifica que el juego termina correctamente cuando las piezas negras son capturadas."""
+        self.chess_game.__board__ = []  # Elimina todas las piezas negras
+        self.assertTrue(self.chess_game.game_over())
+
+    def test_game_over_black_wins(self):
+        """Verifica que el juego termina correctamente cuando las piezas blancas son capturadas."""
+        self.chess_game.__white_player__.__pieces__= []  # Elimina todas las piezas blancas
+        self.assertTrue(self.chess_game.game_over())
+
+if __name__ == '__main__':
     unittest.main()

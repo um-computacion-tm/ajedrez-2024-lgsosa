@@ -4,6 +4,7 @@ source =
     tests
 omit =
     venv/*
+    entorno/*
     */test*
     */__init__.py
 [report]

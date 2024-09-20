@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.26] - 2024-09-19
+### Added
+
+- Add tests in chess
+
 # [0.0.25] - 2024-09-18
 ### Added
 
