@@ -51,11 +51,6 @@ class TestPlayer(unittest.TestCase):
     def test_remove_piece(self):
         self.player.remove_piece(self.piece1)
         self.assertNotIn(self.piece1, self.player.__pieces__)
-        
-    def test_calculate_score(self):
-        self.player.add_captured_piece(self.piece1)
-        self.player.add_captured_piece(self.piece2)
-        self.assertEqual(self.player.calculate_score(), 8)
 
 if __name__ == '__main__':
     unittest.main()

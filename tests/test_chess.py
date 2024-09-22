@@ -43,9 +43,11 @@ class TestChess(unittest.TestCase):
 
     def test_capture_piece(self):
         """Verifica que una pieza sea capturada correctamente."""
-        self.chess_game.__board__.get_piece(6, 0, Piece("BLACK", 6, 0))
+        self.chess_game._Chess__board__.place_piece(6, 0, Piece("BLACK", 6, 0))  # Coloca una pieza negra
         self.chess_game.move(1, 0, 6, 0)  # Mueve el peón blanco para capturar la pieza negra
-        self.assertIsNone(self.chess_game.__board__.get_piece(6, 0))  # La pieza negra debe haber sido capturada
+        captured_piece = self.chess_game._Chess__board__.get_piece(6, 0)  # Verifica la captura
+        self.assertIsNone(captured_piece)  # La pieza negra debe haber sido capturada
+
 
     def test_move_from_empty_square(self):
         """Verifica que intentar mover desde una casilla vacía levante un error."""
@@ -61,8 +63,9 @@ class TestChess(unittest.TestCase):
 
     def test_game_over_white_wins(self):
         """Verifica que el juego termina correctamente cuando las piezas negras son capturadas."""
-        self.chess_game.__board__ = []  # Elimina todas las piezas negras
-        self.assertTrue(self.chess_game.game_over())
+        self.chess_game.__black_player__.__pieces__= []  # Elimina todas las piezas negras
+        self.assertTrue(self.chess_game.game_over())  # El juego debería terminar
+
 
     def test_game_over_black_wins(self):
         """Verifica que el juego termina correctamente cuando las piezas blancas son capturadas."""

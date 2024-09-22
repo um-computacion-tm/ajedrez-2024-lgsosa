@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.27] - 2024-09-21
+### Added
+
+- Changes in test_player, test_chess y player
+
 # [0.0.26] - 2024-09-19
 ### Added
 
