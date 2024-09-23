@@ -57,7 +57,7 @@ class Chess:
         return self.__board__.show_board()
 
     def game_over(self):
-        return not self.__white_player__.pieces or not self.__black_player__.pieces
+        return not self.__white_player__.__pieces__ or not self.__black_player__.__pieces__
 
     def get_current_player(self):
         return self.__white_player__ if self.__turn__ == "WHITE" else self.__black_player__

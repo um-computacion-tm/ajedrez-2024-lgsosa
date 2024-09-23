@@ -11,41 +11,35 @@ class TestChess(unittest.TestCase):
         self.chess_game = Chess()
 
     def test_initial_turn(self):
-        """Verifica que el turno inicial sea de las blancas."""
         self.assertEqual(self.chess_game.turn, "WHITE")
 
     def test_change_turn(self):
-        """Verifica que el turno cambie correctamente después de una jugada."""
         piece = self.chess_game.__board__.get_piece(1, 0)
         self.chess_game.move(1, 0, 3, 0)  # Mueve un peón blanco
         self.assertEqual(self.chess_game.turn, "BLACK")
 
     def test_is_valid_move(self):
         """Verifica que un movimiento válido sea reconocido correctamente."""
-        piece = self.chess_game.__board__(1, 0)
-        self.assertTrue(self.chess_game.is_valid_move(piece, 3, 0))
+        piece = self.chess_game.__board__.get_piece(1, 0)  # Obtén la pieza de la posición inicial
+        self.assertTrue(self.chess_game.is_valid_move(piece, 3, 0))  # Verifica que sea un movimiento válido
 
     def test_invalid_move(self):
-        """Verifica que un movimiento inválido levante un error."""
         piece = self.chess_game.__board__.get_piece(1, 0)
         self.assertFalse(self.chess_game.is_valid_move(piece, 4, 0))
 
     def test_move_valid(self):
-        """Verifica que una pieza se mueva correctamente cuando el movimiento es válido."""
         self.chess_game.move(1, 0, 3, 0)  # Mover un peón blanco de (1, 0) a (3, 0)
         piece = self.chess_game.__board__.get_piece(3, 0)
         self.assertIsNotNone(piece)
 
     def test_move_invalid(self):
-        """Verifica que un movimiento inválido levante un error."""
         with self.assertRaises(ValueError):
             self.chess_game.move(1, 0, 4, 0)  # Intentar mover el peón blanco a una posición inválida
 
     def test_capture_piece(self):
-        """Verifica que una pieza sea capturada correctamente."""
-        self.chess_game._Chess__board__.place_piece(6, 0, Piece("BLACK", 6, 0))  # Coloca una pieza negra
+        self.chess_game.__board__.move_piece(6, 0, Piece("BLACK", 6, 0))  # Coloca una pieza negra
         self.chess_game.move(1, 0, 6, 0)  # Mueve el peón blanco para capturar la pieza negra
-        captured_piece = self.chess_game._Chess__board__.get_piece(6, 0)  # Verifica la captura
+        captured_piece = self.chess_game.__board__.get_piece(6, 0)  # Verifica la captura
         self.assertIsNone(captured_piece)  # La pieza negra debe haber sido capturada
 
 
