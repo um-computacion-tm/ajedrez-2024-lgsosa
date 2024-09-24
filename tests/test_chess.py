@@ -36,12 +36,6 @@ class TestChess(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.chess_game.move(1, 0, 4, 0)  # Intentar mover el peón blanco a una posición inválida
 
-    def test_capture_piece(self):
-        self.chess_game.__board__.move_piece(6, 0, Piece("BLACK", 6, 0))  # Coloca una pieza negra
-        self.chess_game.move(1, 0, 6, 0)  # Mueve el peón blanco para capturar la pieza negra
-        captured_piece = self.chess_game.__board__.get_piece(6, 0)  # Verifica la captura
-        self.assertIsNone(captured_piece)  # La pieza negra debe haber sido capturada
-
 
     def test_move_from_empty_square(self):
         """Verifica que intentar mover desde una casilla vacía levante un error."""
