@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.30] - 2024-09-26
+### Added
+
+- Changes all_pieces for more maintainability
+
 # [0.0.29] - 2024-09-23
 ### Added
 
