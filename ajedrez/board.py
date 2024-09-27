@@ -7,6 +7,7 @@ from ajedrez.all_pieces.pawn import Pawn
 
 class Board:
     def __init__(self):
+        self.game_over = False
         self.__positions__ = []
         for i in range(8):
             col = []
@@ -61,18 +62,36 @@ class Board:
         return 0 <= row < 8 and 0 <= col < 8
 
     def move_piece(self, from_row, from_col, to_row, to_col):
+        # Verifica que el movimiento esté dentro de los límites del tablero
         if not self.is_within_bounds(to_row, to_col):
             raise ValueError("Move is out of bounds")
         
+        # Obtén la pieza de la posición de origen
         piece = self.get_piece(from_row, from_col)
         if piece is None:
             raise ValueError("No piece at the given position")
+        
+        # Verifica si hay una pieza en la posición de destino
+        destination_piece = self.get_piece(to_row, to_col)
+        
+        if destination_piece:
+            if destination_piece.color == piece.color:
+                # Si la pieza es del mismo color, es un movimiento inválido
+                raise ValueError("You cannot move to a square occupied by your own piece")
+            else:
+                # Si la pieza es del color contrario, realizar captura
+                print(f"Capturing {destination_piece} at ({to_row}, {to_col})")
+                if isinstance(destination_piece, King):
+                    print(f"{piece.color} player wins! The opponent's King has been captured.")
+                    self.game_over = True  # Marca el juego como terminado
+                # Remover la pieza capturada
+                self.remove_piece(to_row, to_col)
         
         # Actualiza la posición de la pieza
         piece.row = to_row
         piece.col = to_col
         
-        # Mueve la pieza al nuevo lugar
+        # Coloca la pieza en la nueva posición
         self.set_piece(piece, to_row, to_col)
         
         # Elimina la pieza de la posición original

@@ -33,18 +33,3 @@ class Player():
 
     def remove_piece(self, piece): #para eliminar la pieza del jugador (cdo esta sea comida)
         self.__pieces__.remove(piece)
-
-    def calculate_score(self):
-        score = 0
-        for piece in self.__captured_pieces__:
-            score += piece.value  # Asume que cada pieza tiene un atributo 'value'
-        return score
-
-
-
-
-#represento 1 jugador
-
-#almaceno las piezas del jugador 
-
-#metodo para mover y quitar piezas (si este las come)

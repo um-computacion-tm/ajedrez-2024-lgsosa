@@ -1,6 +1,46 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.30] - 2024-09-26
+### Added
+
+- Changes all_pieces for more maintainability
+
+# [0.0.29] - 2024-09-23
+### Added
+
+- Changes in test_chess
+
+# [0.0.28] - 2024-09-22
+### Added
+
+- Changes in test_chess
+
+# [0.0.27] - 2024-09-21
+### Added
+
+- Changes in test_player, test_chess y player
+
+# [0.0.26] - 2024-09-19
+### Added
+
+- Add tests in chess
+
+# [0.0.25] - 2024-09-18
+### Added
+
+- Changes have been made to 'cli', but no final fix has been implemented yet.
+
+# [0.0.24] - 2024-09-17
+### Added
+
+- Changes in cli
+
+# [0.0.23] - 2024-09-16
+### Added
+
+- Changes in board and cli
+
 # [0.0.22] - 2024-09-14
 ### Added
 
