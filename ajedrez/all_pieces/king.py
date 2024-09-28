@@ -2,7 +2,8 @@ from ajedrez.pieces import Piece
 
 class King(Piece):
     def __init__(self, color, row=None, col=None):
-        super().__init__(color, "♔", "♚", row, col)
+        super().__init__(color, row, col)
+        self.symbol = "♔" if color == "WHITE" else "♚"
 
     def basic_king_moves(self,row,col):
         moves=[]

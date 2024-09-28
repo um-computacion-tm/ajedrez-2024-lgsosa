@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.31] - 2024-09-27
+### Added
+
+- Changes all_pieces -king -pawn -rook
+
 # [0.0.30] - 2024-09-26
 ### Added
 

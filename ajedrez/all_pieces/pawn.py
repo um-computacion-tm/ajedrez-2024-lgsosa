@@ -28,12 +28,11 @@ class Pawn(Piece):
 
     def eat_pieces_with_peon(self, row, col):
         movimientos = []
-        if self.color == "WHITE":
-            movimientos += Pawn.diagonal_moves(row, col, -1, -1)
-            movimientos += Pawn.diagonal_moves(row, col, -1, 1)
-        elif self.color == "BLACK":
-            movimientos += Pawn.diagonal_moves(row, col, 1, -1)
-            movimientos += Pawn.diagonal_moves(row, col, 1, 1)
+        directions = [(-1, -1), (-1, 1)] if self.color == "WHITE" else [(1, -1), (1, 1)]
+        
+        for dx, dy in directions:
+            movimientos += Pawn.diagonal_moves(row, col, dx, dy)
+        
         return movimientos
 
     def get_possible_moves(self, board, row, col):
