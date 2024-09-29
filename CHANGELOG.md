@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.32] - 2024-09-28
+### Added
+
+- Changes colors in pawn,king,rook because had errors
+
 # [0.0.31] - 2024-09-27
 ### Added
 
