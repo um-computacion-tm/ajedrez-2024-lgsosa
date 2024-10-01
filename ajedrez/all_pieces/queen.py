@@ -1,9 +1,9 @@
 from ajedrez.pieces import Piece
 
 class Queen(Piece):
-    def __init__(self, color, row=None, col=None):
-        super().__init__(color, "♕", "♛", row, col)
-
+    def __init__(self, color, row, col):
+        super().__init__(color, row=row, col=col)
+        self.symbol = "♕" if color == "WHITE" else "♛"
 
     def basic_queen_moves(self, row, col):
         moves = []

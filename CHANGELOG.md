@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.33] - 2024-09-30
+### Added
+
+- Changes colors but I have more errors
+
 # [0.0.32] - 2024-09-28
 ### Added
 
