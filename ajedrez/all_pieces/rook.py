@@ -1,9 +1,8 @@
 from ajedrez.pieces import Piece
 
 class Rook(Piece):
-    def __init__(self, color, row, col):
-        super().__init__(color, row=row, col=col)
-        self.symbol = "♖" if color == "WHITE" else "♜"
+    def __init__(self, color, row=None, col=None):
+        super().__init__(color, "♖", "♜", row, col)
 
     def movimientos_basicos_de_torres(self, row, col):
         moves = []

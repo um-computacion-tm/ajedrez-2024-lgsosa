@@ -1,20 +1,21 @@
 from ajedrez.board import Board
-from ajedrez.player import Player  # Asumiendo que ya tienes la clase Player
-from ajedrez.pieces import Piece
+from ajedrez.player import Player 
 
 class Chess:
     def __init__(self):
         self.__board__ = Board()
-        #crear jugadores
         self.__white_player__ = Player("WHITE", self.__board__)
         self.__black_player__ = Player("BLACK", self.__board__)
         self.__turn__ = "WHITE"
 
     def is_valid_move(self, piece, to_row, to_col):
-        from_row = piece.row
-        from_col = piece.col
-        valid_moves = piece.get_possible_moves(self.__board__, from_row, from_col)
-        return (to_row, to_col) in valid_moves
+            if piece.color != self.__turn__: #me habia olvidado de que primero debe validar el turno para la pieza
+                print(f"Es el turno de {self.__turn__}. No puedes mover la pieza del oponente.")
+                return False
+            from_row = piece.row
+            from_col = piece.col
+            valid_moves = piece.get_possible_moves(self.__board__, from_row, from_col)
+            return (to_row, to_col) in valid_moves
 
 
     def move(self, from_row, from_col, to_row, to_col):
@@ -34,7 +35,6 @@ class Chess:
             current_player = self.__white_player__ if self.__turn__ == "WHITE" else self.__black_player__
             current_player.add_captured_piece(target_piece)
             
-        # Check if either player has no more pieces
         if not self.__white_player__.__pieces__:
             print("Black wins! White has no more pieces.")
             return
