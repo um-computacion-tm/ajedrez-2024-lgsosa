@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.35] - 2024-10-02
+### Added
+
+- Add menu to play
+
 # [0.0.34] - 2024-10-01
 ### Added
 
