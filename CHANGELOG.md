@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.36] - 2024-10-03
+### Added
+
+- Changes in rook
+
 # [0.0.35] - 2024-10-02
 ### Added
 
