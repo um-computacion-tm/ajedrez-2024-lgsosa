@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 # [0.0.37] - 2024-10-04
 ### Added
 
-- Changes in test_rook
+- Changes in rook and test_rook
 
 # [0.0.36] - 2024-10-03
 ### Added
