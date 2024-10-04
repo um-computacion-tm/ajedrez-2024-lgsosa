@@ -21,3 +21,6 @@ class Piece():
     
     def assign_symbol(self, symbol_white, symbol_black):
         return symbol_white if self.color == "WHITE" else symbol_black
+    
+    def is_within_bounds(self, r, c):
+        return 0 <= r < 8 and 0 <= c < 8
