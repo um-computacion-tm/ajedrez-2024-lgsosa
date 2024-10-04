@@ -4,21 +4,21 @@ class Rook(Piece):
     def __init__(self, color, row=None, col=None):
         super().__init__(color, "♖", "♜", row, col)
 
-    def movimientos_basicos_de_torres(self, row, col):
-        moves = []
+    def get_possible_moves(self, board, row, col):
+        return self.basic_rook_moves(row, col)
 
-        # Movimientos verticales (arriba y abajo)
+    def basic_rook_moves(self, row, col):
+        moves = self.get_straight_moves(row, col)
+        return moves
+
+    def get_straight_moves(self, row, col):
+        moves = []
         for r in range(8):
             if r != row:
                 moves.append((r, col))
 
-        # Movimientos horizontales (izquierda y derecha)
         for c in range(8):
             if c != col:
                 moves.append((row, c))
 
         return moves
-
-    def get_possible_moves(self, board, row, col):
-        return self.movimientos_basicos_de_torres(row, col)
-#############
