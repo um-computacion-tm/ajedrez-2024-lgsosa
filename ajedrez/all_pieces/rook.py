@@ -8,17 +8,27 @@ class Rook(Piece):
         return self.basic_rook_moves(row, col)
 
     def basic_rook_moves(self, row, col):
-        moves = self.get_straight_moves(row, col)
-        return moves
+        return self.get_straight_moves(row, col)
 
     def get_straight_moves(self, row, col):
         moves = []
-        for r in range(8):
-            if r != row:
-                moves.append((r, col))
+        
+        # Movimientos verticales
+        moves.extend(self.generate_moves(row, col, direction="vertical"))
+        
+        # Movimientos horizontales
+        moves.extend(self.generate_moves(row, col, direction="horizontal"))
+        
+        return moves
 
-        for c in range(8):
-            if c != col:
-                moves.append((row, c))
-
+    def generate_moves(self, row, col, direction):
+        moves = []
+        if direction == "vertical":
+            for r in range(8):
+                if r != row:
+                    moves.append((r, col))
+        elif direction == "horizontal":
+            for c in range(8):
+                if c != col:
+                    moves.append((row, c))
         return moves
