@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.38] - 2024-10-06
+### Added
+
+- Changes in chess because the pieces can move over other pieces
+
 # [0.0.37] - 2024-10-04
 ### Added
 

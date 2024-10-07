@@ -9,13 +9,20 @@ class Chess:
         self.__turn__ = "WHITE"
 
     def is_valid_move(self, piece, to_row, to_col):
-            if piece.color != self.__turn__: #me habia olvidado de que primero debe validar el turno para la pieza
-                print(f"Es el turno de {self.__turn__}. No puedes mover la pieza del oponente.")
-                return False
-            from_row = piece.row
-            from_col = piece.col
-            valid_moves = piece.get_possible_moves(self.__board__, from_row, from_col)
-            return (to_row, to_col) in valid_moves
+        if piece.color != self.__turn__:
+            print(f"Es el turno de {self.__turn__}. No puedes mover la pieza del oponente.")
+            return False
+        
+        from_row = piece.row
+        from_col = piece.col
+        valid_moves = piece.get_possible_moves(self.__board__, from_row, from_col)
+        if (to_row, to_col) not in valid_moves:
+            return False
+        if not self.__is_path_clear(piece, from_row, from_col, to_row, to_col):
+            print("No puedes mover sobre otras piezas.")
+            return False
+
+        return True
 
 
     def move(self, from_row, from_col, to_row, to_col):
@@ -43,7 +50,29 @@ class Chess:
             return
 
         self.__change_turn__()
+    #para las piezas a mitad del camino q me faltaba
+    def __is_path_clear(self, piece, from_row, from_col, to_row, to_col):
+        delta_row = (to_row - from_row)
+        delta_col = (to_col - from_col)
 
+        step_row = 0
+        step_col = 0
+
+        if delta_row != 0:
+            step_row = delta_row // abs(delta_row)  # -1 o 1
+        if delta_col != 0:
+            step_col = delta_col // abs(delta_col)  # -1 o 1
+
+        current_row = from_row + step_row
+        current_col = from_col + step_col
+
+        while (current_row != to_row or current_col != to_col):
+            if self.__board__.get_piece(current_row, current_col) is not None:
+                return False  
+            current_row += step_row
+            current_col += step_col
+
+        return True
 
 
     @property
