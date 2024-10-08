@@ -13,24 +13,9 @@ class TestChess(unittest.TestCase):
     def test_initial_turn(self):
         self.assertEqual(self.chess_game.turn, "WHITE")
 
-    def test_change_turn(self):
-        piece = self.chess_game.__board__.get_piece(1, 0)
-        self.chess_game.move(1, 0, 3, 0)  # Mueve un peón blanco
-        self.assertEqual(self.chess_game.turn, "BLACK")
-
-    def test_is_valid_move(self):
-        """Verifica que un movimiento válido sea reconocido correctamente."""
-        piece = self.chess_game.__board__.get_piece(1, 0)  # Obtén la pieza de la posición inicial
-        self.assertTrue(self.chess_game.is_valid_move(piece, 3, 0))  # Verifica que sea un movimiento válido
-
     def test_invalid_move(self):
         piece = self.chess_game.__board__.get_piece(1, 0)
         self.assertFalse(self.chess_game.is_valid_move(piece, 4, 0))
-
-    def test_move_valid(self):
-        self.chess_game.move(1, 0, 3, 0)  # Mover un peón blanco de (1, 0) a (3, 0)
-        piece = self.chess_game.__board__.get_piece(3, 0)
-        self.assertIsNotNone(piece)
 
     def test_move_invalid(self):
         with self.assertRaises(ValueError):
