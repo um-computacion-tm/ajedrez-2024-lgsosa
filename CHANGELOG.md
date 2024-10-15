@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.40] - 2024-10-15
+### Added
+
+- Changes in chess and cli and board because has a problem with the pieces
+
+# [0.0.39] - 2024-10-08
+### Added
+
+- Changes for docker
+
 # [0.0.38] - 2024-10-06
 ### Added
 

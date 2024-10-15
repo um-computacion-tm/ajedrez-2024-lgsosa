@@ -50,7 +50,8 @@ class Chess:
             return
 
         self.__change_turn__()
-    #para las piezas a mitad del camino q me faltaba
+
+
     def __is_path_clear(self, piece, from_row, from_col, to_row, to_col):
         delta_row = (to_row - from_row)
         delta_col = (to_col - from_col)
@@ -90,3 +91,15 @@ class Chess:
 
     def get_current_player(self):
         return self.__white_player__ if self.__turn__ == "WHITE" else self.__black_player__
+
+    @property
+    def board(self):
+        return self.__board__
+
+    @property
+    def white_player(self):
+        return self.__white_player__
+
+    @property
+    def black_player(self):
+        return self.__black_player__

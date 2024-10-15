@@ -2,15 +2,14 @@ from ajedrez.chess import Chess
 import os
 
 def show_welcome_message():
-    os.system('clear') # Clears the screen (on Linux/Mac)
+    os.system('clear')  # Clears the screen (on Linux/Mac)
     print("**********************************************")
     print("*                                            *")
     print("*                 CHESS                      *")
     print("*                                            *")
     print("**********************************************")
     print("\n Press Enter or any key to start...")
-
-    input() # Waits for the user to press any key
+    input()  # Waits for the user to press any key
 
 def main():
     show_welcome_message()
@@ -21,48 +20,38 @@ def main():
     while game_active:
         print(chess.show_board())
 
-        # Verifica si el juego ha terminado por captura de un rey
-        if game_over(chess):
-            game_active = False  # Termina el juego si se captura un rey
-            break
+        if game_over(chess):  # Verificar si el juego ha terminado
+            game_active = False  # Cambiar estado del juego
+            break  # Salir del bucle si el juego terminó
 
-        # Muestra el menú con opciones
         choice = show_menu()
-        
+
         if choice == "1":
-            # Turno del juego
             play(chess)
         elif choice == "2":
-            # Intento de rendición
             if surrender(chess):
                 game_active = False
-                return  # Finaliza el juego
+                return
         elif choice == "3":
-            # Salir del juego
             print("Game over. Exiting the game...")
             game_active = False
-            return  # Finaliza el juego
+            return
         else:
             print("Invalid option. Please choose a valid option.")
 
 def show_menu():
-    """
-    Muestra el menú con las opciones: Jugar, Rendirse, Salir.
-    """
     print("\nMenu:")
     print("1. Play a turn")
     print("2. Surrender")
     print("3. Exit the game")
-    return input("Choose an option (1, 2, or 3): ")
+    print("4. Show possible moves")
+    return input("Choose an option (1, 2, 3, or 4): ")
 
 def surrender(chess):
-    """
-    Ambos jugadores deben estar de acuerdo para rendirse y finalizar el juego.
-    """
     while True:
         player1_response = input("White Player, do you agree to surrender? (yes/no): ").lower()
         player2_response = input("Black Player, do you agree to surrender? (yes/no): ").lower()
-        
+
         if player1_response == "yes" and player2_response == "yes":
             print("Both players agreed to surrender. The game has ended by surrender.")
             return True
@@ -72,35 +61,54 @@ def surrender(chess):
         else:
             print("Invalid input. Please enter 'yes' or 'no'.")
 
-def game_over(chess):
-    """
-    Verifica si el rey blanco o negro ha sido capturado usando el símbolo de cada rey.
-    """
-    white_king_alive = any(piece.symbol == "♔" for piece in chess.__white_player__.__pieces__)
-    black_king_alive = any(piece.symbol == "♚" for piece in chess.__black_player__.__pieces__)
-    
-    if not white_king_alive:
-        print("Game Over! Black Player wins. White's king has been captured.")
-        return True
-    elif not black_king_alive:
-        print("Game Over! White Player wins. Black's king has been captured.")
-        return True
-    
-    return False
-
 def play(chess):
-    """
-    Lógica de un turno en el juego.
-    """
     try:
         print("Turn: ", chess.turn)
         from_row = int(input("From row: "))
         from_col = int(input("From col: "))
         to_row = int(input("To row: "))
         to_col = int(input("To col: "))
-        chess.move(from_row, from_col, to_row, to_col)
+
+        captured_piece = chess.move(from_row, from_col, to_row, to_col)
+        
+        if captured_piece:
+            print(f"Capturing {captured_piece} at ({to_row}, {to_col})")
+            if captured_piece.symbol in ["♔", "♚"]:
+                print(f"{chess.turn} player wins! The opponent's King has been captured.")
+            
+            # Eliminar la pieza capturada de la lista de piezas del jugador correspondiente
+            if captured_piece.color == 'white':
+                chess.__white_player__.__pieces__.remove(captured_piece)
+                print(f"Removed {captured_piece} from White's pieces. Remaining: {len(chess.__white_player__.__pieces__)}")
+            else:
+                chess.__black_player__.__pieces__.remove(captured_piece)
+                print(f"Removed {captured_piece} from Black's pieces. Remaining: {len(chess.__black_player__.__pieces__)}")
+
+        # Verificar cantidad de piezas después de cada jugada
+        print(f"Current pieces count - White: {len(chess.__white_player__.__pieces__)}, Black: {len(chess.__black_player__.__pieces__)}")
+
     except Exception as e:
         print("Error: ", e)
+
+def game_over(chess):
+    # Depuración del estado de las piezas
+    print(f"Checking game over: White pieces: {len(chess.__white_player__.__pieces__)}, Black pieces: {len(chess.__black_player__.__pieces__)}")
+    
+    white_king_alive = any(piece.symbol == "♔" for piece in chess.__white_player__.__pieces__)
+    black_king_alive = any(piece.symbol == "♚" for piece in chess.__black_player__.__pieces__)
+
+    # Depurar el estado del rey
+    print(f"White King Alive: {white_king_alive}, Black King Alive: {black_king_alive}")
+    
+    if not white_king_alive:
+        print("Game Over! Black Player wins. White's king has been captured.")
+        return True
+
+    if not black_king_alive:
+        print("Game Over! White Player wins. Black's king has been captured.")
+        return True
+
+    return False  # El juego sigue
 
 if __name__ == '__main__':
     main()

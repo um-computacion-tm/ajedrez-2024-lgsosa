@@ -11,3 +11,4 @@
 # Test Coverage
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/28f89d87fb4e58907aa5/test_coverage)](https://codeclimate.com/github/um-computacion-tm/ajedrez-2024-lgsosa/test_coverage)
+
