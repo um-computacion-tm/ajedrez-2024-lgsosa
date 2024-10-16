@@ -1,59 +1,87 @@
 import unittest
 from unittest.mock import patch, MagicMock
 from ajedrez.chess import Chess
-from ajedrez.cli import show_welcome_message, show_menu, surrender, game_over, play
+from ajedrez.cli import Cli
 
 class TestCli(unittest.TestCase):
+    def setUp(self):
+        self.cli = Cli()
+        self.cli.chess = MagicMock(spec=Chess)
+        self.cli.chess.white_player = MagicMock()
+        self.cli.chess.black_player = MagicMock()
+        self.cli.chess.white_player.pieces = ['pawn1', 'knight1']
+        self.cli.chess.black_player.pieces = ['pawn2', 'knight2']
+        self.cli.chess.get_board_state = MagicMock(return_value="Estado del tablero")
 
-    @patch('builtins.input', side_effect=['\n'])
-    @patch('os.system')
-    def test_show_welcome_message(self, mock_os_system, mock_input):
-        # Testea que se muestra el mensaje de bienvenida y se limpia la pantalla
-        show_welcome_message()
-        mock_os_system.assert_called_with('clear')
-        mock_input.assert_called()
 
-    @patch('builtins.input', side_effect=['1'])
-    def test_show_menu(self, mock_input):
-        # Testea que la opción de jugar se selecciona correctamente
-        result = show_menu()
-        self.assertEqual(result, '1')
+    @patch('builtins.input', side_effect=['start'])
+    @patch('os.system') 
+    def test_show_welcome_message(self, mock_clear, mock_input):
+        self.cli.show_welcome_message()
+        mock_clear.assert_called_once()
+        self.assertTrue(mock_input.called)
 
     @patch('builtins.input', side_effect=['yes', 'yes'])
-    def test_surrender_both_agree(self, mock_input):
-        # Testea que ambos jugadores aceptan rendirse
-        chess = Chess()
-        result = surrender(chess)
+    def test_surrender_both_players_agree(self, mock_input):
+        result = self.cli.surrender()
         self.assertTrue(result)
 
     @patch('builtins.input', side_effect=['yes', 'no'])
-    def test_surrender_one_disagrees(self, mock_input):
-        # Testea que uno de los jugadores no acepta rendirse
-        chess = Chess()
-        result = surrender(chess)
+    def test_surrender_one_player_disagrees(self, mock_input):
+        result = self.cli.surrender()
         self.assertFalse(result)
 
-    def test_game_over_white_king_captured(self):
-        # Testea cuando el rey blanco es capturado
-        chess = Chess()
-        with patch.object(chess, '__white_player__', MagicMock(__pieces__=[])):
-            result = game_over(chess)
-            self.assertTrue(result)
+    @patch('builtins.print')
+    @patch('builtins.input', side_effect=['3'])
+    def test_show_menu(self, mock_input, mock_print):
+        result = self.cli.show_menu()
+        self.assertEqual(result, '3')
 
-    def test_game_over_black_king_captured(self):
-        # Testea cuando el rey negro es capturado
-        chess = Chess()
-        with patch.object(chess, '__black_player__', MagicMock(__pieces__=[])):
-            result = game_over(chess)
-            self.assertTrue(result)
+    @patch('builtins.input', side_effect=['1', '1', '0', '1']) 
+    def test_play_turn(self, mock_input):
+        self.cli.chess.move.return_value = None
+        self.cli.chess.white_player.pieces = ['pawn1']
+        self.cli.chess.black_player.pieces = ['pawn2']
 
-    @patch('builtins.input', side_effect=['1', '1', '2', '2'])
-    def test_play(self, mock_input):
-        # Testea el flujo de juego básico
-        chess = Chess()
-        with patch.object(chess, 'move') as mock_move:
-            play(chess)
-            mock_move.assert_called_with(1, 1, 2, 2)
+        result = self.cli.play()
+
+        self.assertFalse(result)
+        self.cli.chess.move.assert_called_once_with(1, 1, 0, 1)
+
+    @patch('builtins.input', side_effect=['1', '0', '0', '1'])
+    def test_play_turn_captures_king(self, mock_input):
+        self.cli.chess.move.return_value = "WHITE"
+        self.cli.chess.white_player.pieces = ['pawn1']
+        self.cli.chess.black_player.pieces = ['king_black']
+
+        result = self.cli.play()
+
+        self.assertTrue(result)
+
+    @patch('builtins.input', side_effect=['1', '1', '3', '0'])
+    def test_play_turn_invalid_move(self, mock_input):
+        self.cli.chess.move.side_effect = ValueError("Invalid move")
+        result = self.cli.play()
+        self.assertFalse(result)
+        self.cli.chess.move.assert_called_once_with(1, 1, 3, 0)
+
+    @patch('builtins.input', side_effect=['1', '0', '0', '0'])
+    def test_play_turn_captures_king(self, mock_input):
+        self.cli.chess.move.return_value = "WHITE"
+        self.cli.chess.white_player.pieces = ['pawn1']
+        self.cli.chess.black_player.pieces = ['king_black']
+        
+        result = self.cli.play()
+        
+        self.assertTrue(result)
+        self.cli.chess.move.assert_called_once_with(1, 0, 0, 0)
+
+    @patch('builtins.print')
+    def test_show_board_state(self, mock_print):
+        self.cli.show_board()
+        self.cli.chess.get_board_state.assert_called_once()
+        mock_print.assert_called_once_with("Estado del tablero")
+
 
 if __name__ == '__main__':
     unittest.main()

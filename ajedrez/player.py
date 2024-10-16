@@ -2,13 +2,13 @@ from ajedrez.board import Board
 
 class Player():
     def __init__(self, color, board):
-        self.__color__ = color  # Almacena el color del jugador
-        self.__board__ = board  # Almacena la instancia del tablero
-        self.__pieces__ = self._initialize_pieces_()  # Almacena las piezas que moverá cada jugador
-        self.__captured_pieces__ = []  # Almacena las piezas capturadas
+        self.__color__ = color 
+        self.__board__ = board 
+        self.__pieces__ = self._initialize_pieces_() 
+        self.__captured_pieces__ = []
 
 
-    def _initialize_pieces_(self): #recorro del board y almaceno las piezas que pertenecen al jugador
+    def _initialize_pieces_(self):
         pieces = []
         for row in range(8):
             for col in range(8):
@@ -31,5 +31,8 @@ class Player():
     def add_captured_piece(self, piece):
         self.__captured_pieces__.append(piece)
 
-    def remove_piece(self, piece): #para eliminar la pieza del jugador (cdo esta sea comida)
+    def remove_piece(self, piece):
         self.__pieces__.remove(piece)
+    
+    def get_color(self):
+        return self.__color__
