@@ -21,24 +21,11 @@
 
 Este documento detalla el proceso de desarrollo de un juego de Ajedrez en Python, siguiendo las reglas y características descritas en el artículo de Wikipedia sobre Ajedrez. El juego se implementará en una interfaz de consola, permitiendo a los jugadores disfrutar de partidas de Ajedrez en un entorno virtual.
 
-## Requisitos del Juego
 
-### 1. Tablero de juego
-El tablero debe tener un tamaño estándar de 8x8 celdas, con la configuración inicial de piezas de ajedrez según las reglas del juego.
-
-### 2. Fichas
-El juego debe incluir un conjunto de piezas para cada jugador:
-- 1 rey
-- 1 reina
-- 2 torres
-- 2 alfiles
-- 2 caballos
-- 8 peones
-
-### 3. Jugabilidad
+### 1. Jugabilidad
 Los jugadores deben poder mover sus piezas según las reglas de movimiento específicas para cada tipo de pieza.
 
-### 4. Fin del juego
+### 2. Fin del juego
 El juego debe finalizar cuando:
 - Un jugador se queda sin piezas.
 - Los jugadores deciden terminar la partida de mutuo acuerdo (empate).
