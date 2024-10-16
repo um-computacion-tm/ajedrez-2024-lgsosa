@@ -74,13 +74,6 @@ docker run -i ajedrez-2024-lgsosa
 
 Este comando iniciará el juego de Ajedrez en la consola. Sigue las instrucciones que aparecen para comenzar una partida.
 
-### 5. Testing del juego
-Para ejecutar las pruebas del juego, asegúrate de que Docker esté en funcionamiento y usa el siguiente comando:
-```bash
-docker run -i ajedrez-2024-lgsosa pytest
-```
-Este comando ejecutará todos los tests disponibles en el proyecto para asegurar que todas las funcionalidades estén funcionando correctamente.
-
 ## 3. Jugabilidad
 
 Cada jugador alterna turnos para mover una pieza por turno de acuerdo a las siguientes reglas de movimiento:
