@@ -24,5 +24,3 @@ class Alfils(Piece):
     
     def get_possible_moves(self, board, row, col ):
         return self.basic_alfils_moves(row,col)
-
-#############

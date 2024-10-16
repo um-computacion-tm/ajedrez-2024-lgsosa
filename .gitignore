@@ -6,3 +6,4 @@ venv
 entorno/
 /entorno
 entorno
+coverage.xml
