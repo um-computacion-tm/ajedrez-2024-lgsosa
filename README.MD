@@ -24,6 +24,7 @@ Este documento detalla el proceso de desarrollo de un juego de Ajedrez en Python
 
 ### 1. Jugabilidad
 Los jugadores deben poder mover sus piezas según las reglas de movimiento específicas para cada tipo de pieza.
+(al final del documento podrá consultar los movimientos de cada pieza)
 
 ### 2. Fin del juego
 El juego debe finalizar cuando:
