@@ -56,9 +56,6 @@ Primero, clona el repositorio oficial del juego de Ajedrez:
 git clone https://github.com/um-computacion-tm/ajedrez-2024-lgsosa.git
 ```
 Luego, navega al directorio del proyecto:
-```bash
-cd ajedrez-python
-```
 
 ### 3. Construir la imagen de Docker
 Para construir la imagen de Docker, ejecuta el siguiente comando en la raíz del proyecto:
