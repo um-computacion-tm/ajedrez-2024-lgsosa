@@ -33,17 +33,20 @@ El juego debe finalizar cuando:
 
 ## Procedimiento para Instalar y Ejecutar el Juego
 
-### 1. Requisitos previos
+### Requisitos previos
 Para poner en funcionamiento el juego de ajedrez en modo de testing y modo desplegado con Docker, necesitas tener instalados los siguientes componentes:
 - Docker
 - Python 3.x
 
-### 2. Clonar el repositorio
+### 1. Clonar el repositorio
 Primero, clona el repositorio oficial del juego de Ajedrez:
 ```bash
 git clone https://github.com/um-computacion-tm/ajedrez-2024-lgsosa.git
 ```
-Luego, navega al directorio del proyecto:
+### 2. Instalar dependencias
+```
+pip install -r requirements.txt
+```
 
 ### 3. Construir la imagen de Docker
 Para construir la imagen de Docker, ejecuta el siguiente comando en la raíz del proyecto:
