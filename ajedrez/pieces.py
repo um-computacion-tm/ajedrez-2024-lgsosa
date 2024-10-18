@@ -9,7 +9,7 @@ class Piece():
     def color(self):
         return self._color
 
-    def get_possible_moves(self, row, col):
+    def get_possible_moves(self, board, row, col):
         pass
 
     def set_position(self, row, col):

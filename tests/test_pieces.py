@@ -37,7 +37,14 @@ class TestPiece(unittest.TestCase):
         # Test para asegurar que el método get_possible_moves existe
         piece = Piece("WHITE", "♙", "♟")
         self.assertTrue(hasattr(piece, 'get_possible_moves'))
-        self.assertEqual(piece.get_possible_moves(None, 0, 0), None)
+        
+        # Aquí intentamos llamar a get_possible_moves con None como el tablero y coordenadas
+        # Debes implementar el método en la clase Piece para que devuelva algo útil o simplemente retornar None
+        possible_moves = piece.get_possible_moves(None, 0, 0)
+        
+        # Asumiendo que el método no está implementado, verifiquemos que sea None
+        self.assertIsNone(possible_moves)
+
 
 if __name__ == '__main__':
     unittest.main()
