@@ -24,20 +24,3 @@ class Piece():
     
     def is_within_bounds(self, r, c):
         return 0 <= r < 8 and 0 <= c < 8
-
-class Directions:
-    @staticmethod
-    def diagonal():
-        return [(-1, -1), (-1, 1), (1, -1), (1, 1)]  # Diagonales
-    
-    @staticmethod
-    def straight():
-        return [(-1, 0), (1, 0), (0, -1), (0, 1)]  # Verticales y horizontales
-    
-    @staticmethod
-    def all_directions():
-        return [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]  # Todas direcciones
-
-    @staticmethod
-    def knight_moves():
-        return [(-2, -1), (-1, -2), (1, -2), (2, -1), (2, 1), (1, 2), (-1, 2), (-2, 1)]
