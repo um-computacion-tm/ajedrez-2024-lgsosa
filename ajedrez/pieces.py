@@ -1,9 +1,8 @@
 class Piece():
-    def __init__(self, color, symbol_white, symbol_black, row=None, col=None, board = None):
+    def __init__(self, color, symbol_white, symbol_black, row=None, col=None):
         self._color = color
         self.row = row
         self.col = col
-        self.board = board
         self.symbol = self.assign_symbol(symbol_white, symbol_black)
 
     @property
