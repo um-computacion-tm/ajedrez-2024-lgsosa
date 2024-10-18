@@ -11,27 +11,26 @@ class Chess:
         self.__turn__ = "WHITE"
 
     def is_valid_move(self, piece, to_row, to_col):
+        is_valid = True 
+        
         if piece.color != self.__turn__:
             print(f"Es el turno de {self.__turn__}. No puedes mover la pieza del oponente.")
-            return False
-        
-        from_row = piece.row
-        from_col = piece.col
-        valid_moves = piece.get_possible_moves(self.__board__, from_row, from_col)
-        
-        if (to_row, to_col) not in valid_moves:
-            return False
+            is_valid = False
+        else:
+            from_row = piece.row
+            from_col = piece.col
+            valid_moves = piece.get_possible_moves(self.__board__, from_row, from_col)
 
-        # Verificar si el movimiento es para el caballo
-        if isinstance(piece, Knight):
-            return True  # El caballo puede moverse sin restricciones
+            if (to_row, to_col) not in valid_moves:
+                is_valid = False
+            elif isinstance(piece, Knight):
+                is_valid = True 
+            else:
+                if not self.__is_path_clear(piece, from_row, from_col, to_row, to_col):
+                    print("No puedes mover sobre otras piezas.")
+                    is_valid = False
 
-        # Para las demás piezas, verificar que el camino esté despejado
-        if not self.__is_path_clear(piece, from_row, from_col, to_row, to_col):
-            print("No puedes mover sobre otras piezas.")
-            return False
-
-        return True
+        return is_valid
 
 
     def move(self, from_row, from_col, to_row, to_col):
