@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.42] - 2024-10-18
+### Added
+- Added a file named `move_helper` to be used in King and Queen, removing code duplication.
+- Modified tests for King and Queen due to the changes in their logic.
+- Updated Knight to ensure no duplication with King and Queen.
 
 # [0.0.41] - 2024-10-16
 ### Added
