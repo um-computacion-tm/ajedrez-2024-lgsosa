@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [0.0.42] - 2024-10-18
+### Added
+
+- Updated `King`, `Queen`, and `Knight` classes due to 3 issues.
+- Created a `Directions` class in `Pieces` to manage common movement directions.
+
 # [0.0.41] - 2024-10-16
 ### Added
 - Fixed final details (the game was repeating the winner message).
