@@ -1,15 +1,16 @@
 class Piece():
-    def __init__(self, color, symbol_white, symbol_black, row=None, col=None):
+    def __init__(self, color, symbol_white, symbol_black, row=None, col=None, board = None):
         self._color = color
         self.row = row
         self.col = col
+        self.board = board
         self.symbol = self.assign_symbol(symbol_white, symbol_black)
 
     @property
     def color(self):
         return self._color
 
-    def get_possible_moves(self, board, row, col):
+    def get_possible_moves(self, row, col):
         pass
 
     def set_position(self, row, col):

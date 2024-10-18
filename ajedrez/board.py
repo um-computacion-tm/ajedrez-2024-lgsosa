@@ -7,6 +7,7 @@ from ajedrez.all_pieces.pawn import Pawn
 
 class Board:
     def __init__(self):
+        self.board = [[None for _ in range(8)] for _ in range(8)]
         self.__positions__ = []
         for i in range(8):
             col = []
@@ -111,3 +112,18 @@ class Board:
             board_str += row_str + "\n"
 
         return board_str
+    
+    def __getitem__(self, position):
+        # Permite acceder a las casillas del tablero usando la sintaxis board[row][col]
+        row, col = position
+        return self.board[row][col]
+
+    def __setitem__(self, position, piece):
+        # Permite colocar piezas en el tablero usando la sintaxis board[row][col] = piece
+        row, col = position
+        self.board[row][col] = piece
+
+    def display(self):
+        # Método para mostrar el tablero
+        for row in self.board:
+            print([str(piece) if piece else " " for piece in row])

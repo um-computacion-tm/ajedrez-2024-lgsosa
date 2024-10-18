@@ -1,5 +1,6 @@
 from ajedrez.board import Board
 from ajedrez.player import Player
+from ajedrez.all_pieces.knight import Knight
 from ajedrez.all_pieces.king import King
 
 class Chess:
@@ -17,13 +18,21 @@ class Chess:
         from_row = piece.row
         from_col = piece.col
         valid_moves = piece.get_possible_moves(self.__board__, from_row, from_col)
+        
         if (to_row, to_col) not in valid_moves:
             return False
+
+        # Verificar si el movimiento es para el caballo
+        if isinstance(piece, Knight):
+            return True  # El caballo puede moverse sin restricciones
+
+        # Para las demás piezas, verificar que el camino esté despejado
         if not self.__is_path_clear(piece, from_row, from_col, to_row, to_col):
             print("No puedes mover sobre otras piezas.")
             return False
 
         return True
+
 
     def move(self, from_row, from_col, to_row, to_col):
         piece = self.__board__.get_piece(from_row, from_col)

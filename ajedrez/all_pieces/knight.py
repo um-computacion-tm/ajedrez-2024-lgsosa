@@ -2,17 +2,35 @@ from ajedrez.pieces import Piece
 
 class Knight(Piece):
     def __init__(self, color, row=None, col=None):
-        super().__init__(color, "♞", "♘", row, col)
+        super().__init__(color, "♘", "♞", row, col)
 
-    def move(self, start_pos, end_pos, board):
-        start_row, start_col = start_pos
-        end_row, end_col = end_pos
+    def basic_knight_moves(self):
+        moves = []
+        current_position = (self.row, self.col)
 
-        row_diff = abs(end_row - start_row)
-        col_diff = abs(end_col - start_col)
+        # Lista de movimientos posibles del caballero
+        possible_moves = [
+            (current_position[0] - 2, current_position[1] - 1),
+            (current_position[0] - 1, current_position[1] - 2),
+            (current_position[0] + 1, current_position[1] - 2),
+            (current_position[0] + 2, current_position[1] - 1),
+            (current_position[0] + 2, current_position[1] + 1),
+            (current_position[0] + 1, current_position[1] + 2),
+            (current_position[0] - 1, current_position[1] + 2),
+            (current_position[0] - 2, current_position[1] + 1),
+        ]
 
-        if (row_diff == 2 and col_diff == 1) or (row_diff == 1 and col_diff == 2):
-            destination_piece = board[end_row][end_col]
-            return destination_piece is None or destination_piece.color != self.color
+        # Filtrar movimientos válidos dentro del tablero
+        for move in possible_moves:
+            if 0 <= move[0] < 8 and 0 <= move[1] < 8:
+                moves.append(move)
 
-        return False
+        return moves
+
+    def get_possible_moves(self, board, row, col):
+        # Actualizar la posición de la pieza antes de calcular los movimientos
+        self.row = row
+        self.col = col
+        
+        # Obtener movimientos básicos sin restricción de otras piezas
+        return self.basic_knight_moves()
