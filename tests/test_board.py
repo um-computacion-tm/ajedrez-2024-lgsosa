@@ -10,7 +10,6 @@ from ajedrez.board import Board
 class TestChessBoard(unittest.TestCase):
     
     def setUp(self):
-        """Configura un nuevo tablero antes de cada test"""
         self.board = Board() 
 
     def test_initial_pieces(self):
@@ -56,19 +55,19 @@ class TestChessBoard(unittest.TestCase):
         self.assertIn("♟", board_str)
 
     def test_board_after_multiple_moves(self):
-        self.board.move_piece(1, 0, 3, 0)  # Mueve un peón
-        self.board.move_piece(6, 0, 4, 0)  # Mueve un peón blanco
-        self.assertIsInstance(self.board.get_piece(3, 0), Pawn)  # Asegúrate que el peón negro esté en la posición correcta
-        self.assertIsInstance(self.board.get_piece(4, 0), Pawn)  # Asegúrate que el peón blanco esté en la posición correcta
+        self.board.move_piece(1, 0, 3, 0) 
+        self.board.move_piece(6, 0, 4, 0)
+        self.assertIsInstance(self.board.get_piece(3, 0), Pawn) 
+        self.assertIsInstance(self.board.get_piece(4, 0), Pawn) 
 
     def test_move_piece_capture(self):
-        self.board.move_piece(1, 0, 2, 0)  # Mueve el peón negro de (1,0) a (2,0)
+        self.board.move_piece(1, 0, 2, 0) 
         
-        self.board.set_piece(Knight("WHITE", 2, 0), 2, 0)  # Coloca un caballo blanco en la posición (2,0)
+        self.board.set_piece(Knight("WHITE", 2, 0), 2, 0) 
         
-        self.board.move_piece(2, 0, 3, 0)  # El peón negro captura el caballo blanco
-        self.assertIsInstance(self.board.get_piece(3, 0), Knight)  # Verifica que el caballo blanco fue capturado
-        self.assertTrue(self.board.is_empty(2, 0))  # La posición (2,0) debe estar vacía
+        self.board.move_piece(2, 0, 3, 0) 
+        self.assertIsInstance(self.board.get_piece(3, 0), Knight) 
+        self.assertTrue(self.board.is_empty(2, 0)) 
 
 
 if __name__ == '__main__':

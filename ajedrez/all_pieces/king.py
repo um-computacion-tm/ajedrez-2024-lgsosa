@@ -6,11 +6,16 @@ class King(Piece):
         super().__init__(color, "♔", "♚", row, col)
 
     def get_possible_moves(self, board, row, col):
-        directions = [
-            (-1, -1), (-1, 0), (-1, 1),
-            ( 0, -1),         ( 0, 1),
-            ( 1, -1), ( 1, 0), ( 1, 1)
-        ]
-        # El Rey solo puede moverse un paso a la vez
-        return MoveHelper.generate_moves(directions, row, col, max_steps=1)
+        moves = []
+        for row_offset in [-1, 0, 1]:
+            for col_offset in [-1, 0, 1]:
+                if row_offset == 0 and col_offset == 0:
+                    continue
 
+                new_row = row + row_offset
+                new_col = col + col_offset
+
+                if 0 <= new_row < 8 and 0 <= new_col < 8:
+                    moves.append((new_row, new_col))
+
+        return moves
