@@ -1,9 +1,18 @@
-from ajedrez.pieces import Piece, PieceMover
+from ajedrez.pieces import Piece
 
 class Knight(Piece):
     def __init__(self, color, row=None, col=None):
-        super().__init__(color, "♘", "♞", row, col)
+        super().__init__(color, "♞", "♘", row, col)
 
-    def get_possible_moves(self, board, row, col):
-        directions = PieceMover.get_directions('knight_moves')
-        return PieceMover.generate_moves(row, col, directions, board, max_steps=1)  # Caballo solo se mueve 1 paso
+    def move(self, start_pos, end_pos, board):
+        start_row, start_col = start_pos
+        end_row, end_col = end_pos
+
+        row_diff = abs(end_row - start_row)
+        col_diff = abs(end_col - start_col)
+
+        if (row_diff == 2 and col_diff == 1) or (row_diff == 1 and col_diff == 2):
+            destination_piece = board[end_row][end_col]
+            return destination_piece is None or destination_piece.color != self.color
+
+        return False

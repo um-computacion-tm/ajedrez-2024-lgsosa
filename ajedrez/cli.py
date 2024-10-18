@@ -50,10 +50,9 @@ class Cli:
             print("1. Play a turn")
             print("2. Surrender")
             print("3. Exit the game")
-            print("4. Show possible moves")
             
-            choice = input("Choose an option (1, 2, 3, or 4): ")
-            if choice in ['1', '2', '3', '4']:
+            choice = input("Choose an option (1, 2, or 3): ")
+            if choice in ['1', '2', '3']:
                 return choice
             else:
                 print("Invalid option. Please choose a valid option.")
