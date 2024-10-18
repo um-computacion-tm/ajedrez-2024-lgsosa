@@ -83,13 +83,10 @@ class Chess:
 
         print(f"Checking game over: White King Alive: {white_king_alive}, Black King Alive: {black_king_alive}")
 
-        if not white_king_alive:
-            return True
+        game_is_over = not white_king_alive or not black_king_alive
 
-        if not black_king_alive:
-            return True
+        return game_is_over
 
-        return False
 
     def __change_turn__(self):
         self.__turn__ = "BLACK" if self.__turn__ == "WHITE" else "WHITE"
