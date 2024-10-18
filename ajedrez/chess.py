@@ -1,5 +1,6 @@
 from ajedrez.board import Board
 from ajedrez.player import Player
+from ajedrez.all_pieces.knight import Knight
 from ajedrez.all_pieces.king import King
 
 class Chess:
@@ -10,20 +11,27 @@ class Chess:
         self.__turn__ = "WHITE"
 
     def is_valid_move(self, piece, to_row, to_col):
+        is_valid = True 
+        
         if piece.color != self.__turn__:
             print(f"Es el turno de {self.__turn__}. No puedes mover la pieza del oponente.")
-            return False
-        
-        from_row = piece.row
-        from_col = piece.col
-        valid_moves = piece.get_possible_moves(self.__board__, from_row, from_col)
-        if (to_row, to_col) not in valid_moves:
-            return False
-        if not self.__is_path_clear(piece, from_row, from_col, to_row, to_col):
-            print("No puedes mover sobre otras piezas.")
-            return False
+            is_valid = False
+        else:
+            from_row = piece.row
+            from_col = piece.col
+            valid_moves = piece.get_possible_moves(self.__board__, from_row, from_col)
 
-        return True
+            if (to_row, to_col) not in valid_moves:
+                is_valid = False
+            elif isinstance(piece, Knight):
+                is_valid = True 
+            else:
+                if not self.__is_path_clear(piece, from_row, from_col, to_row, to_col):
+                    print("No puedes mover sobre otras piezas.")
+                    is_valid = False
+
+        return is_valid
+
 
     def move(self, from_row, from_col, to_row, to_col):
         piece = self.__board__.get_piece(from_row, from_col)
@@ -74,13 +82,10 @@ class Chess:
 
         print(f"Checking game over: White King Alive: {white_king_alive}, Black King Alive: {black_king_alive}")
 
-        if not white_king_alive:
-            return True
+        game_is_over = not white_king_alive or not black_king_alive
 
-        if not black_king_alive:
-            return True
+        return game_is_over
 
-        return False
 
     def __change_turn__(self):
         self.__turn__ = "BLACK" if self.__turn__ == "WHITE" else "WHITE"
